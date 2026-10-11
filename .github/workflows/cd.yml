@@ -18,3 +18,11 @@ jobs:
 
       - name: Build app
         run: ./scripts/buildprod.sh
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+        with:
+          version: '>= 363.0.0'
+
+      - name: Push Build Artifact
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/still-gravity-511311-c0/notely-ar-repo/notely:latest .
